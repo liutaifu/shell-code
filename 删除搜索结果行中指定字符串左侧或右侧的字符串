@@ -32,3 +32,9 @@ xxxx@u241:~/meldlog$ cat test.txt
   3.3、执行删除并显示结果
   xxxx@u241:~/meldlog$ echo ${var%D*}
   01-02 10:09:26.022 935 3897
+
+4、for循环中屏蔽空格键换行
+IFD=$IFS
+IFS=$'\n'
+xxx
+IFS=$IFD
