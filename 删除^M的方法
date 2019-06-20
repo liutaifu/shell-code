@@ -1,0 +1,2 @@
+vim normal模式
+%s/\r//g
