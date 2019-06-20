@@ -1,0 +1,34 @@
+1、测试log信息
+xxxx@u241:~/meldlog$ cat test.txt
+01-02 10:09:26.022   935  3897 D mm-camera: <STATS_AF ><  LOW> 130: af_module_start_session: AF Module - start session
+01-02 10:09:26.022   935  3897 D mm-camera: <STATS_AF ><  LOW> 6323: af_port_init: E
+01-02 10:09:26.022   935  3897 D mm-camera: <STATS_AF ><  LOW> 132: af_fdprio_init: Initialized
+01-02 10:09:26.022   935  3897 D mm-camera: <STATS_AF ><  LOW> 6383: af_port_init: X
+01-02 10:09:26.071   935   935 D mm-camera: <STATS_AF >< HIGH> 91: af_module_set_session_data: module 0xf5623da0, sessionid = 0x10000
+01-02 10:09:26.071   935   935 D mm-camera: <STATS_AF >< HIGH> 189: af_port_set_session_data: af_libptr 0x0 session_id 1
+01-02 10:09:26.071   935   935 D mm-camera: <STATS_AF >< HIGH> 198: af_port_set_session_data: Load AF interface functions
+01-02 10:09:26.071   935   935 D mm-camera: <STATS_AF >< HIGH> 2664: af_biz_init:  Init
+01-02 10:09:26.072   935   935 D mm-camera: <STATS_AF ><  LOW> 2651: af_biz_dlsym: Loaded af_core_set_param 0xf3f54c40
+01-02 10:09:26.072   935   935 D mm-camera: <STATS_AF ><  LOW> 2651: af_biz_dlsym: Loaded af_core_get_param 0xf3f54c44
+2、从左侧删除指定字符串，保留右侧内容
+  ${var#*pattern} #pattern*：从左边开始查找pattern，直至发现第一个，删除包括pattern在内左边的内容
+  
+  2.1、查找指定字符串
+  xxxx@u241:~/meldlog$ var=`grep -r 130: test.txt`
+  2.2、打印搜索结果行
+  xxxx@u241:~/meldlog$ echo $var
+  01-02 10:09:26.022 935 3897 D mm-camera: <STATS_AF >< LOW> 130: af_module_start_session: AF Module - start session 
+  2.3、执行删除并显示结果
+  xxxx@u241:~/meldlog$ echo ${var#*D}       删除字符“D”左侧的内容，结果如下
+  mm-camera: <STATS_AF >< LOW> 130: af_module_start_session: AF Module - start session
+3、从右侧删除指定字符串，保留左侧内容
+  ${var%pattern*} %pattern*：从右边开始查找pattern，直至发现第一个，删除包括pattern在内右边的内容
+  
+  3.1、查找指定字符串
+  xxxx@u241:~/meldlog$ var=`grep -r 130: test.txt`
+  3.2、打印搜索结果行
+  xxxx@u241:~/meldlog$ echo $var
+  01-02 10:09:26.022 935 3897 D mm-camera: <STATS_AF >< LOW> 130: af_module_start_session: AF Module - start session
+  3.3、执行删除并显示结果
+  xxxx@u241:~/meldlog$ echo ${var%D*}
+  01-02 10:09:26.022 935 3897
