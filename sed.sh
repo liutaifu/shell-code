@@ -17,3 +17,10 @@ done
 
 IFS=$IFD
 #sed -i 's/D/H/g' $var
+
+
+#sed 's/.*MtkCam/MtkCam/g' 1.txt  修改MtkCam之前的所有字符为空
+#sed 'numccode' 1.txt  把num行改为"code"定义的字符
+#sed -i 'numccode' 1.txt  把num行改为"code"定义的字符,并将修改写入1.txt文件
+#sed 'numicode' 1.txt 在num行前加入'code'定义的字符行
+#sed 'numacode' 1.txt 在num行加入“code”定义的字符行
